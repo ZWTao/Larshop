@@ -2,18 +2,8 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | faker_locale
-    |--------------------------------------------------------------------------
-    |
-    | This value is the name of your Faker. This value is used when the
-    | framework needs to place the application's name in a notification or
-    | any other location as required by the application or its packages.
-    |
-    */
 
-    'faker_locale' => 'zh_CN',
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -77,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Asia/Shanghai',
 
     /*
     |--------------------------------------------------------------------------
@@ -90,8 +80,9 @@ return [
     |
     */
 
-    'locale' => 'zh_CN',
+    'locale' => 'zh-CN',
 
+    'faker_locale' => 'zh_CN',
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale
@@ -102,8 +93,7 @@ return [
     | the language folders that are provided through your application.
     |
     */
-
-    'fallback_locale' => 'zh_CN',
+    'fallback_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
