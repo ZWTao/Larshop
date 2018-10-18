@@ -61,6 +61,11 @@ class UsersController extends Controller
         });
         return $grid;
     }
+    protected function Moderator($id ){
+
+
+
+    }
 
 
 }
