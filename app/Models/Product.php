@@ -13,12 +13,20 @@ class Product extends Model
     protected $casts = [
         'on_sale' => 'boolean', // on_sale 是一个布尔类型的字段
     ];
-    // 与商品SKU关联
+    /*
+     * 与商品SKU关联
+     *
+     */
     public function skus()
     {
         return $this->hasMany(ProductSku::class);
     }
 
+    /*
+     * 判断图片地址是否携带http，或者https
+     *
+     *
+     */
     public function getImageUrlAttribute()
     {
         // 如果 image 字段本身就已经是完整的 url 就直接返回

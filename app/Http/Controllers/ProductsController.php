@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * 商品管理模块
+ *
+ * 该类包含首页商品展示，用户收藏，用户取消收藏，用户收藏列表等 功能
+ * @author   zhao
+ * @version     1.0 版本号
+ */
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidRequestException;
@@ -10,10 +16,10 @@ use App\Models\Product;
 class ProductsController extends Controller
 {
     /**
-     * Index interface.
+     * 首页列表
      *
-     * @param Content $content
-     * @return Content
+     * @param Request $request
+     * @return products
      */
         public function index(Request $request)
     {
@@ -49,13 +55,7 @@ class ProductsController extends Controller
 
         $products = $builder->paginate(16);
 
-        return view('products.index', [
-            'products' => $products,
-            'filters'  => [
-                'search' => $search,
-                'order'  => $order,
-            ],
-        ]);
+        return view('products.index', [ 'products' => $products, 'filters'  => [ 'search' => $search, 'order'  => $order,]]);
 
     }
     /**
@@ -104,5 +104,11 @@ class ProductsController extends Controller
         }
 
         return view('products.show', ['product' => $product, 'favored' => $favored]);
+    }
+    public function favorites(Request $request)
+    {
+        $products = $request->user()->favoriteProducts()->paginate(16);
+
+        return view('products.favorites', ['products' => $products]);
     }
 }
