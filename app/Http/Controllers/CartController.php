@@ -6,10 +6,30 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\AddCartRequest;
 use App\Models\CartItem;
+use App\Models\ProductSku;
 
 class CartController extends Controller
 {
-    //
+    /**
+     * 购物车列表展示
+     *
+     * @param Request $request
+     * @return products
+     */
+
+    public function index(Request $request)
+    {
+        $cartItems = $request->user()->cartItems()->with(['productSku.product'])->get();
+
+        return view('cart.index', ['cartItems' => $cartItems]);
+    }
+    /**
+     * 添加到购物车
+     *
+     * @param Request $request
+     * @return products
+     */
+
 
     public function add(AddCartRequest $request)
     {
@@ -35,4 +55,17 @@ class CartController extends Controller
 
         return [];
     }
+
+    /*
+     * 移除购物车商品
+     * @param Request $request
+     * @return products
+     */
+    public function remove(ProductSku $sku, Request $request)
+    {
+        $request->user()->cartItems()->where('product_sku_id', $sku->id)->delete();
+
+        return [];
+    }
+
 }
