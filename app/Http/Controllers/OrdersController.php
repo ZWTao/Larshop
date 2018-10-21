@@ -7,7 +7,7 @@ use App\Models\ProductSku;
 use App\Models\UserAddress;
 use App\Models\Order;
 use Carbon\Carbon;
-
+use App\Jobs\CloseOrder;
 use App\Exceptions\InvalidRequestException;
 
 class OrdersController extends Controller
@@ -63,6 +63,9 @@ class OrdersController extends Controller
             $skuIds = collect($request->input('items'))->pluck('sku_id');
             $user->cartItems()->whereIn('product_sku_id', $skuIds)->delete();
 
+            $this->dispatch(new CloseOrder($order, config('app.order_ttl')));
+
+            return $order;
             return $order;
         });
 

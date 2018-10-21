@@ -109,7 +109,7 @@ return [
     'key' => env('APP_KEY'),
 
     'cipher' => 'AES-256-CBC',
-
+    'order_ttl' => 1800,
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
